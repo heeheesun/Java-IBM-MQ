@@ -1,29 +1,35 @@
 package org.example;
 
 import java.io.*; //import classes for IO operation
+import java.util.Properties;
+
 import com.ibm.mq.*; //import classes for MQSeries
 
 public class MQget
 {
     public static void getMQmessage() throws IOException
     {
-        String qmgrname="TESTQM";
-        String qname="Local_Q1";
-        String fileRoute = "C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\";
-        String fileName = "makeTestFile";
+        String propFileRoute = "C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\test.properties";
+        Properties prop = readProperties.readProp(propFileRoute);
+        String qManager = prop.getProperty("qManager");
+        String queueName = prop.getProperty("qName");
+        MQQueueManager qMgr = null;
+
+        String fileRoute =  prop.getProperty("fileRoute");
+        String fileName =  prop.getProperty("getFileName");
         try{
             //로컬 큐에 접속할 때는 사용하지 않는 요소들
 //            MQEnvironment.hostname = "";
 //            MQEnvironment.channel = "";
 //            MQEnvironment.port = Integer.parseInt("");
-            MQQueueManager qmgr = new MQQueueManager(qmgrname); // 이름 지정된 큐 관리자에 대한 연결을 작성
+            MQQueueManager qmgr = new MQQueueManager(qManager); // 이름 지정된 큐 관리자에 대한 연결을 작성
 
             // Queue open option
             // MQC.MQOO_INPUT_AS_Q_DEF: 대기열 정의 기본값을 사용하여 메시지를 가져오려면 엽니다.
             // MQC.MQOO_INQUIRE: 조회를 위해 열기 - 특성을 조회하려는 경우에 필요합니다.
             int openOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_INQUIRE;
             // 이 큐 관리자에서 MQ 큐에 대한 액세스를 설정하여 메시지를 가져오거나 찾아보고, 메시지를 넣고, 큐의 속성에 대해 조회하거나 큐의 속성을 설정
-            MQQueue que = qmgr.accessQueue(qname,openOptions,null,null,null);
+            MQQueue que = qmgr.accessQueue(queueName,openOptions,null,null,null);
             int depth = que.getCurrentDepth(); // 큐에 들어간 메세지의 갯수
             int t_dep = depth;
             System.out.println("depth = " + depth);
@@ -42,15 +48,7 @@ public class MQget
                 String msg_str = msg.readLine();
                 System.out.println("msg_str = " + msg_str);
 
-                // putMQmessage로 큐에 메세지를 넣은 경우 일정 형식을 갖게 됨
-                // 그 형식을 가지고 있는지 확인하고 그럴 경우 다시 변환
-                int length = msg_str.length();
-                String first = msg_str.substring(0, 1);
-                String last = msg_str.substring(length-1);
-
-                if (first.equals("[") && last.equals("]"))
-                    msg_str = msg_str.substring(1, length - 1);
-
+                // readPerLine로 읽어와서 나뉘어진 줄 바꿈을 다시 변환
                 String enter_msg_str = msg_str.replaceAll(", ", System.getProperty("line.separator"));
 
                 // file에 들어갈 내용

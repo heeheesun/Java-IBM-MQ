@@ -50,6 +50,15 @@ public class MQput {
         return list;
     }
 
+    public static void systemEncoding() {
+        // 시스템 문자 인코딩
+        // IO Exception Occurred: Input length = 1 에러를 해결하기 위함 (현재는 지워도 에러가 나지 않는다)
+        // com.ibm.mq.cfg.jmqi.UnmappableCharacterAction: 인코딩 및 디코딩 시 번역할 수 없는 데이터에 대해 수행할 조치를 지정
+        // com.ibm.mq.cfg.jmqi.UnmappableCharacterReplacement: 인코딩 작업에서 문자를 매핑할 수 없을 때 적용할 대체 바이트를 설정하거나 가져옴
+        System.setProperty("com.ibm.mq.cfg.jmqi.UnmappableCharacterAction", "REPLACE");
+        System.setProperty("com.ibm.mq.cfg.jmqi.UnmappableCharacterReplacement", "63");
+    }
+
     public static void putMQmessage() {
         // 큐 매니저에 연결하기 위한 커넥션 생성
         Hashtable<String, Object> props = new Hashtable<String, Object>();
@@ -58,7 +67,8 @@ public class MQput {
 //        props.put(MQConstants.PORT_PROPERTY, 1414);
 //        props.put(MQConstants.HOST_NAME_PROPERTY, "localhost");
 
-        Properties prop = readProperties.readProp("C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\test.properties");
+        String propFileRoute = "C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\test.properties";
+        Properties prop = readProperties.readProp(propFileRoute);
         String qManager = prop.getProperty("qManager");
         String queueName = prop.getProperty("qName");
         MQQueueManager qMgr = null;
@@ -67,12 +77,7 @@ public class MQput {
         String fileName =  prop.getProperty("putFileName");
         File file = new File(fileRoute + fileName + ".txt"); // 읽어올 파일 경로와 이름 설정
 
-        // 시스템 문자 인코딩
-        // IO Exception Occurred: Input length = 1 에러를 해결하기 위함 (현재는 지워도 에러가 나지 않는다)
-        // com.ibm.mq.cfg.jmqi.UnmappableCharacterAction: 인코딩 및 디코딩 시 번역할 수 없는 데이터에 대해 수행할 조치를 지정
-        // com.ibm.mq.cfg.jmqi.UnmappableCharacterReplacement: 인코딩 작업에서 문자를 매핑할 수 없을 때 적용할 대체 바이트를 설정하거나 가져옴
-        System.setProperty("com.ibm.mq.cfg.jmqi.UnmappableCharacterAction", "REPLACE");
-        System.setProperty("com.ibm.mq.cfg.jmqi.UnmappableCharacterReplacement", "63");
+        systemEncoding();
 
 
         try {
@@ -107,7 +112,7 @@ public class MQput {
             List<String> list = readPerLine(file);
             String str = list.toString();
             System.out.println("str = " + str);
-            // 읽어온 메세지 형식 변환
+            // readPerLine로 메세지를 읽어온 경우 일정 형식을 갖게 됨. 변환해준다.
             int length = str.length();
             str = str.substring(1, length - 1);
 
@@ -119,6 +124,7 @@ public class MQput {
             queue.put(message, pmo);
             queue.close();
 
+            // Junit에서 수행
             // MQAsyncStatus를 사용하여 이전 MQI 활동의 상태를 조회
             MQAsyncStatus asyncStatus = qMgr.getAsyncStatus(); // 큐 관리자에서 비동기 오류 상태를 요청
             assertEquals(1, asyncStatus.putSuccessCount); // 두 객체의 값이 같은지 여부를 체크

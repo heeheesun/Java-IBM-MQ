@@ -4,9 +4,9 @@ public class Main
 {
     public static void main(String[] args) throws Exception
     {
-        MQput.putMQmessage();
+//        MQput.putMQmessage();
         System.out.println("=================================================");
-//        MQget.getMQmessage();
+        MQget.getMQmessage();
         System.out.println("=================================================");
     }
 }
