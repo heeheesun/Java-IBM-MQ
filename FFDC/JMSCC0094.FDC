@@ -1,0 +1,355 @@
+----------------------------------START FFST------------------------------------
+C:\Users\heehe\OneDrive\바탕 화면\test\JavaMQ_Gradle\FFDC\JMSCC0094.FDC PID:2344
+
+                                    IBM MQ classes for JMS and Java (AllClient packaging) First Failure Symptom Report
+                                            
+
+Product          :- IBM MQ classes for JMS and Java (AllClient packaging)
+Date/Time        :- Fri Mar 31 14:46:05 KST 2023
+System time      :- 1680241565477
+Operating System :- Windows 10
+UserID           :- heehe
+Java Vendor      :- Amazon.com Inc.
+Java Version     :- 11.0.18+10-LTS
+
+Source Class     :- com.ibm.mq.jmqi.local.LocalServer
+Source Method    :- checkSize
+ProbeID          :- 01
+Thread           :- name=main priority=5 group=main ccl=jdk.internal.loader.ClassLoaders$AppClassLoader@71bc1ae4
+
+                                      Data
+                                      ----
+
+|   CmdLevel     :-  910
+|   Description  :-  MQ Structure size check, missing item
+|   name         :-  index:19   SpiGetOptions.p version:4
+|   nativeSize   :-  56
+
+                              Version information
+                              -------------------
+
+IBM MQ JMS Provider
+9.2.5.0
+p925-L220207
+Production
+Component Title: IBM MQ JMS Provider
+Component Name:  com.ibm.msg.client.wmq
+Version:         9.2.5.0
+Class Name:      class com.ibm.msg.client.wmq.factories.WMQComponent
+CMVC:            p925-L220207
+mqjbnd level:    p910-004-191122
+Jar location:    file:/C:/Users/heehe/.gradle/caches/modules-2/files-2.1/com.ibm.mq/com.ibm.mq.allclient/9.2.5.0/ebf7de1c4739e07fee6b10a91df492fa9377f5da/com.ibm.mq.allclient-9.2.5.0.jar
+Factory Class:   class com.ibm.msg.client.wmq.factories.WMQFactoryFactory
+
+Common Services for Java Platform, Standard Edition
+9.2.5.0
+p925-L220207
+Production
+inPreferenceTo[0]: com.ibm.msg.client.commonservices.j2me
+Component Title:   Common Services for Java Platform, Standard Edition
+Component Name:    com.ibm.msg.client.commonservices.j2se
+Version:           9.2.5.0
+Class Name:        class com.ibm.msg.client.commonservices.j2se.J2SEComponent
+CMVC:              p925-L220207
+Jar location:      file:/C:/Users/heehe/.gradle/caches/modules-2/files-2.1/com.ibm.mq/com.ibm.mq.allclient/9.2.5.0/ebf7de1c4739e07fee6b10a91df492fa9377f5da/com.ibm.mq.allclient-9.2.5.0.jar
+Factory Class:     class com.ibm.msg.client.commonservices.j2se.CommonServicesImplementation
+
+Java Message Service Client
+9.2.5.0
+p925-L220207
+Production
+Component Title: Java Message Service Client
+Component Name:  com.ibm.msg.client.jms
+Version:         9.2.5.0
+Class Name:      class com.ibm.msg.client.jms.internal.JMSComponent
+CMVC:            p925-L220207
+Jar location:    file:/C:/Users/heehe/.gradle/caches/modules-2/files-2.1/com.ibm.mq/com.ibm.mq.allclient/9.2.5.0/ebf7de1c4739e07fee6b10a91df492fa9377f5da/com.ibm.mq.allclient-9.2.5.0.jar
+Factory Class:   null
+
+IBM MQ classes for Java Message Service
+9.2.5.0
+p925-L220207
+Production
+Component Title: IBM MQ classes for Java Message Service
+Component Name:  com.ibm.mq.jms
+Version:         9.2.5.0
+BuiltWith:       IBM Corporation  8.0.5.17 - pxa6480sr5fp17-20180627_01(SR5 FP17) Linux
+Class Name:      class com.ibm.mq.jms.MQJMSComponent
+CMVC:            p925-L220207
+Jar location:    file:/C:/Users/heehe/.gradle/caches/modules-2/files-2.1/com.ibm.mq/com.ibm.mq.allclient/9.2.5.0/ebf7de1c4739e07fee6b10a91df492fa9377f5da/com.ibm.mq.allclient-9.2.5.0.jar
+Factory Class:   null
+
+IBM MQ classes for Java
+9.2.5.0
+p925-L220207
+Production
+Component Title: IBM MQ classes for Java
+Component Name:  com.ibm.mq
+Version:         9.2.5.0
+BasedOn:         
+Class Name:      class com.ibm.mq.MQJavaComponent
+CMVC:            p925-L220207
+Jar location:    file:/C:/Users/heehe/.gradle/caches/modules-2/files-2.1/com.ibm.mq/com.ibm.mq.allclient/9.2.5.0/ebf7de1c4739e07fee6b10a91df492fa9377f5da/com.ibm.mq.allclient-9.2.5.0.jar
+APARs:           
+title:           
+Factory Class:   null
+
+
+
+                                  Stack trace
+                                  -----------
+
+Stack trace to show the location of the FFST call
+|   FFST Location  :-  java.lang.Exception
+|   	at com.ibm.msg.client.commonservices.trace.Trace.getCurrentPosition(Trace.java:2173)
+|   	at com.ibm.msg.client.commonservices.trace.Trace.createFFSTString(Trace.java:2080)
+|   	at com.ibm.msg.client.commonservices.trace.Trace.ffstInternal(Trace.java:1943)
+|   	at com.ibm.msg.client.commonservices.trace.Trace.ffst(Trace.java:1745)
+|   	at com.ibm.mq.jmqi.local.LocalMQ.checkSize(LocalMQ.java:647)
+|   	at com.ibm.mq.jmqi.local.LocalMQ.initialise_inner(LocalMQ.java:506)
+|   	at com.ibm.mq.jmqi.local.LocalMQ.initialise(LocalMQ.java:219)
+|   	at com.ibm.mq.jmqi.local.LocalMQ.<init>(LocalMQ.java:1242)
+|   	at com.ibm.mq.jmqi.local.LocalServer.<init>(LocalServer.java:230)
+|   	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+|   	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+|   	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+|   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+|   	at com.ibm.mq.jmqi.JmqiEnvironment.getInstance(JmqiEnvironment.java:767)
+|   	at com.ibm.mq.jmqi.JmqiEnvironment.getMQI(JmqiEnvironment.java:701)
+|   	at com.ibm.mq.MQSESSION.<init>(MQSESSION.java:2062)
+|   	at com.ibm.mq.MQSESSION.getSession(MQSESSION.java:2109)
+|   	at com.ibm.mq.MQManagedConnectionJ11.<init>(MQManagedConnectionJ11.java:209)
+|   	at com.ibm.mq.MQBindingsManagedConnectionFactoryJ11._createManagedConnection(MQBindingsManagedConnectionFactoryJ11.java:190)
+|   	at com.ibm.mq.MQBindingsManagedConnectionFactoryJ11.createManagedConnection(MQBindingsManagedConnectionFactoryJ11.java:236)
+|   	at com.ibm.mq.StoredManagedConnection.<init>(StoredManagedConnection.java:97)
+|   	at com.ibm.mq.MQSimpleConnectionManager.allocateConnection(MQSimpleConnectionManager.java:194)
+|   	at com.ibm.mq.MQQueueManagerFactory.obtainBaseMQQueueManager(MQQueueManagerFactory.java:870)
+|   	at com.ibm.mq.MQQueueManagerFactory.procure(MQQueueManagerFactory.java:818)
+|   	at com.ibm.mq.MQQueueManagerFactory.constructQueueManager(MQQueueManagerFactory.java:760)
+|   	at com.ibm.mq.MQQueueManagerFactory.createQueueManager(MQQueueManagerFactory.java:200)
+|   	at com.ibm.mq.MQQueueManager.<init>(MQQueueManager.java:1004)
+|   	at org.example.MQput.putMQmessage(MQput.java:78)
+|   	at org.example.Main.main(Main.java:7)
+|   
+
+                            Property Store Contents
+                            -----------------------
+
+All currently set properties
+|   awt.toolkit                                         :-  sun.awt.windows.WToolkit
+|   com.ibm.mq.cfg.jmqi.UnmappableCharacterAction       :-  REPLACE
+|   com.ibm.mq.cfg.jmqi.UnmappableCharacterReplacement  :-  63
+|   file.encoding                                       :-  UTF-8
+|   file.separator                                      :-  \
+|   java.awt.graphicsenv                                :-  sun.awt.Win32GraphicsEnvironment
+|   java.awt.printerjob                                 :-  sun.awt.windows.WPrinterJob
+|   java.class.path                                     :-  C:\Users\heehe\OneDrive\바탕 화면\test\JavaMQ_Gradle\out\production\classes;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\junit\junit\4.13.1\cdd00374f1fee76b11e2a9d127405aa3f6be5b6a\junit-4.13.1.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\com.ibm.mq\com.ibm.mq.allclient\9.2.5.0\ebf7de1c4739e07fee6b10a91df492fa9377f5da\com.ibm.mq.allclient-9.2.5.0.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-simple\1.7.32\321ffafb5123a91a71737dbff38ebe273e771e5b\slf4j-simple-1.7.32.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.32\cdcff33940d9f2de763bc41ea05a0be5941176c3\slf4j-api-1.7.32.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\org.bouncycastle\bcpkix-jdk15on\1.70\f81e5af49571a9d5a109a88f239a73ce87055417\bcpkix-jdk15on-1.70.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\org.bouncycastle\bcutil-jdk15on\1.70\54280e7195a7430d7911ded93fc01e07300b9526\bcutil-jdk15on-1.70.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\org.bouncycastle\bcprov-jdk15on\1.70\4636a0d01f74acaf28082fb62b317f1080118371\bcprov-jdk15on-1.70.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\javax.jms\javax.jms-api\2.0.1\5faaa3864ff6025ce69809b60d65bda3e358610c\javax.jms-api-2.0.1.jar;C:\Users\heehe\.gradle\caches\modules-2\files-2.1\org.json\json\20210307\528c8df3757e8bcf151817b1d7b9b434f6aa08d5\json-20210307.jar
+|   java.class.version                                  :-  55.0
+|   java.home                                           :-  C:\Users\heehe\.jdks\corretto-11.0.18
+|   java.io.tmpdir                                      :-  C:\Users\heehe\AppData\Local\Temp\
+|   java.library.path                                   :-  C:\Users\heehe\.jdks\corretto-11.0.18\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\IBM\MQ\java\lib;C:\Program Files\IBM\MQ\java\lib64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Bandizip\;C:\Program Files\IBM\MQ\bin64;C:\Program Files\IBM\MQ\bin;C:\Program Files\IBM\MQ\tools\c\samples\bin64;C:\Program Files\IBM\MQ\tools\c\samples\bin;C:\Users\heehe\AppData\Local\Microsoft\WindowsApps;;.
+|   java.runtime.name                                   :-  OpenJDK Runtime Environment
+|   java.runtime.version                                :-  11.0.18+10-LTS
+|   java.specification.name                             :-  Java Platform API Specification
+|   java.specification.vendor                           :-  Oracle Corporation
+|   java.specification.version                          :-  11
+|   java.vendor                                         :-  Amazon.com Inc.
+|   java.vendor.url                                     :-  https://aws.amazon.com/corretto/
+|   java.vendor.url.bug                                 :-  https://github.com/corretto/corretto-11/issues/
+|   java.vendor.version                                 :-  Corretto-11.0.18.10.1
+|   java.version                                        :-  11.0.18
+|   java.version.date                                   :-  2023-01-17
+|   java.vm.compressedOopsMode                          :-  Zero based
+|   java.vm.info                                        :-  mixed mode
+|   java.vm.name                                        :-  OpenJDK 64-Bit Server VM
+|   java.vm.specification.name                          :-  Java Virtual Machine Specification
+|   java.vm.specification.vendor                        :-  Oracle Corporation
+|   java.vm.specification.version                       :-  11
+|   java.vm.vendor                                      :-  Amazon.com Inc.
+|   java.vm.version                                     :-  11.0.18+10-LTS
+|   jdk.debug                                           :-  release
+|   line.separator                                      :-  
+|   
+|   os.arch                                             :-  amd64
+|   os.name                                             :-  Windows 10
+|   os.version                                          :-  10.0
+|   path.separator                                      :-  ;
+|   sun.arch.data.model                                 :-  64
+|   sun.boot.library.path                               :-  C:\Users\heehe\.jdks\corretto-11.0.18\bin
+|   sun.cpu.endian                                      :-  little
+|   sun.cpu.isalist                                     :-  amd64
+|   sun.desktop                                         :-  windows
+|   sun.io.unicode.encoding                             :-  UnicodeLittle
+|   sun.java.command                                    :-  org.example.Main
+|   sun.java.launcher                                   :-  SUN_STANDARD
+|   sun.jnu.encoding                                    :-  MS949
+|   sun.management.compiler                             :-  HotSpot 64-Bit Tiered Compilers
+|   sun.os.patch.level                                  :-  
+|   user.country                                        :-  KR
+|   user.dir                                            :-  C:\Users\heehe\OneDrive\바탕 화면\test\JavaMQ_Gradle
+|   user.home                                           :-  C:\Users\heehe
+|   user.language                                       :-  ko
+|   user.name                                           :-  heehe
+|   user.script                                         :-  
+|   user.timezone                                       :-  
+|   user.variant                                        :-  
+
+                           WorkQueueMananger Contents
+                           --------------------------
+
+|   Current ThreadPool size      :-  0
+|   Maintain ThreadPool size     :-  false
+|   Maximum ThreadPool size      :-  -1
+|   ThreadPool inactive timeout  :-  0
+
+                               Runtime properties
+                               ------------------
+
+|   Available processors         :-  8
+|   Free memory in bytes (now)   :-  239610320
+|   Max memory in bytes          :-  4211081216
+|   Total memory in bytes (now)  :-  264241152
+
+                           Component Manager Contents
+                           --------------------------
+
+Common Services Components:
+|   CMVC               :-  p925-L220207
+|   Class Name         :-  class com.ibm.msg.client.commonservices.j2se.J2SEComponent
+|   Component Name     :-  com.ibm.msg.client.commonservices.j2se
+|   Component Title    :-  Common Services for Java Platform, Standard Edition
+|   Factory Class      :-  class com.ibm.msg.client.commonservices.j2se.CommonServicesImplementation
+|   Jar location       :-  file:/C:/Users/heehe/.gradle/caches/modules-2/files-2.1/com.ibm.mq/com.ibm.mq.allclient/9.2.5.0/ebf7de1c4739e07fee6b10a91df492fa9377f5da/com.ibm.mq.allclient-9.2.5.0.jar
+|   Version            :-  9.2.5.0
+|   inPreferenceTo[0]  :-  com.ibm.msg.client.commonservices.j2me
+
+Messaging Provider Components:
+|   CMVC             :-  p925-L220207
+|   Class Name       :-  class com.ibm.msg.client.wmq.factories.WMQComponent
+|   Component Name   :-  com.ibm.msg.client.wmq
+|   Component Title  :-  IBM MQ JMS Provider
+|   Factory Class    :-  class com.ibm.msg.client.wmq.factories.WMQFactoryFactory
+|   Jar location     :-  file:/C:/Users/heehe/.gradle/caches/modules-2/files-2.1/com.ibm.mq/com.ibm.mq.allclient/9.2.5.0/ebf7de1c4739e07fee6b10a91df492fa9377f5da/com.ibm.mq.allclient-9.2.5.0.jar
+|   Version          :-  9.2.5.0
+|   mqjbnd level     :-  p910-004-191122
+
+
+
+
+All Thread Information
+
+                          Name : Monitor Ctrl-Break
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=main,maxpri=10]
+                            ID : 13
+                         State : RUNNABLE
+                         Stack : java.net.SocketInputStream.socketRead0(SocketInputStream.java:-2)
+                               : java.net.SocketInputStream.socketRead(SocketInputStream.java:115)
+                               : java.net.SocketInputStream.read(SocketInputStream.java:168)
+                               : java.net.SocketInputStream.read(SocketInputStream.java:140)
+                               : sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+                               : sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+                               : sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+                               : java.io.InputStreamReader.read(InputStreamReader.java:181)
+                               : java.io.BufferedReader.fill(BufferedReader.java:161)
+                               : java.io.BufferedReader.readLine(BufferedReader.java:326)
+                               : java.io.BufferedReader.readLine(BufferedReader.java:392)
+                               : com.intellij.rt.execution.application.AppMainV2$1.run(AppMainV2.java:56)
+
+                          Name : Common-Cleaner
+                      Priority : 8
+                   ThreadGroup : java.lang.ThreadGroup[name=InnocuousThreadGroup,maxpri=10]
+                            ID : 12
+                         State : TIMED_WAITING
+                         Stack : java.lang.Object.wait(Object.java:-2)
+                               : java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+                               : jdk.internal.ref.CleanerImpl.run(CleanerImpl.java:148)
+                               : java.lang.Thread.run(Thread.java:829)
+                               : jdk.internal.misc.InnocuousThread.run(InnocuousThread.java:161)
+
+                          Name : Signal Dispatcher
+                      Priority : 9
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 4
+                         State : RUNNABLE
+
+                          Name : Attach Listener
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 5
+                         State : RUNNABLE
+
+                          Name : Reference Handler
+                      Priority : 10
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 2
+                         State : RUNNABLE
+                         Stack : java.lang.ref.Reference.waitForReferencePendingList(Reference.java:-2)
+                               : java.lang.ref.Reference.processPendingReferences(Reference.java:241)
+                               : java.lang.ref.Reference$ReferenceHandler.run(Reference.java:213)
+
+                          Name : Finalizer
+                      Priority : 8
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 3
+                         State : WAITING
+                         Stack : java.lang.Object.wait(Object.java:-2)
+                               : java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+                               : java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176)
+                               : java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:170)
+
+                          Name : main
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=main,maxpri=10]
+                            ID : 1
+                         State : RUNNABLE
+                         Stack : java.lang.Thread.dumpThreads(Thread.java:-2)
+                               : java.lang.Thread.getAllStackTraces(Thread.java:1653)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer.generateThreadInfo(DefaultTracer.java:1433)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer.access$1200(DefaultTracer.java:151)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer$10.run(DefaultTracer.java:1373)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer$10.run(DefaultTracer.java:1297)
+                               : java.security.AccessController.doPrivileged(AccessController.java:-2)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer.ffst(DefaultTracer.java:1297)
+                               : com.ibm.msg.client.commonservices.j2se.wmqsupport.TracerImpl.ffst(TracerImpl.java:176)
+                               : com.ibm.msg.client.commonservices.trace.Trace.ffstInternal(Trace.java:1948)
+                               : com.ibm.msg.client.commonservices.trace.Trace.ffst(Trace.java:1745)
+                               : com.ibm.mq.jmqi.local.LocalMQ.checkSize(LocalMQ.java:647)
+                               : com.ibm.mq.jmqi.local.LocalMQ.initialise_inner(LocalMQ.java:506)
+                               : com.ibm.mq.jmqi.local.LocalMQ.initialise(LocalMQ.java:219)
+                               : com.ibm.mq.jmqi.local.LocalMQ.<init>(LocalMQ.java:1242)
+                               : com.ibm.mq.jmqi.local.LocalServer.<init>(LocalServer.java:230)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+                               : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+                               : java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+                               : com.ibm.mq.jmqi.JmqiEnvironment.getInstance(JmqiEnvironment.java:767)
+                               : com.ibm.mq.jmqi.JmqiEnvironment.getMQI(JmqiEnvironment.java:701)
+                               : com.ibm.mq.MQSESSION.<init>(MQSESSION.java:2062)
+                               : com.ibm.mq.MQSESSION.getSession(MQSESSION.java:2109)
+                               : com.ibm.mq.MQManagedConnectionJ11.<init>(MQManagedConnectionJ11.java:209)
+                               : com.ibm.mq.MQBindingsManagedConnectionFactoryJ11._createManagedConnection(MQBindingsManagedConnectionFactoryJ11.java:190)
+                               : com.ibm.mq.MQBindingsManagedConnectionFactoryJ11.createManagedConnection(MQBindingsManagedConnectionFactoryJ11.java:236)
+                               : com.ibm.mq.StoredManagedConnection.<init>(StoredManagedConnection.java:97)
+                               : com.ibm.mq.MQSimpleConnectionManager.allocateConnection(MQSimpleConnectionManager.java:194)
+                               : com.ibm.mq.MQQueueManagerFactory.obtainBaseMQQueueManager(MQQueueManagerFactory.java:870)
+                               : com.ibm.mq.MQQueueManagerFactory.procure(MQQueueManagerFactory.java:818)
+                               : com.ibm.mq.MQQueueManagerFactory.constructQueueManager(MQQueueManagerFactory.java:760)
+                               : com.ibm.mq.MQQueueManagerFactory.createQueueManager(MQQueueManagerFactory.java:200)
+                               : com.ibm.mq.MQQueueManager.<init>(MQQueueManager.java:1004)
+                               : org.example.MQput.putMQmessage(MQput.java:78)
+                               : org.example.Main.main(Main.java:7)
+
+                          Name : JMSCCThreadPoolMaster
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=main,maxpri=10]
+                            ID : 16
+                         State : WAITING
+                         Stack : java.lang.Object.wait(Object.java:-2)
+                               : java.lang.Object.wait(Object.java:328)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$WorkQueueManagerThread.waitForNotification(WorkQueueManagerImplementation.java:678)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$WorkQueueManagerThread.waitForNotification(WorkQueueManagerImplementation.java:648)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$WorkQueueManagerThread.run(WorkQueueManagerImplementation.java:918)
+
+First Failure Symptom Report completed at Fri Mar 31 14:46:05 KST 2023
+------------------------------------END FFST------------------------------------

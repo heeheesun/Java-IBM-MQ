@@ -8,6 +8,5 @@ public class Main
         System.out.println("=================================================");
 //        MQget.getMQmessage();
         System.out.println("=================================================");
-
     }
 }

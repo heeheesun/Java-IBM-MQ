@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Properties;
 
-import org.junit.Test;
 
 import com.ibm.mq.MQAsyncStatus;
 import com.ibm.mq.MQException;
@@ -50,7 +50,6 @@ public class MQput {
         return list;
     }
 
-//    @Test // Test 메서드로 인식을 하고 테스트
     public static void putMQmessage() {
         // 큐 매니저에 연결하기 위한 커넥션 생성
         Hashtable<String, Object> props = new Hashtable<String, Object>();
@@ -59,13 +58,14 @@ public class MQput {
 //        props.put(MQConstants.PORT_PROPERTY, 1414);
 //        props.put(MQConstants.HOST_NAME_PROPERTY, "localhost");
 
-        String qManager = "TESTQM";
-        String queueName = "Local_Q1";
+        Properties prop = readProperties.readProp("C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\test.properties");
+        String qManager = prop.getProperty("qManager");
+        String queueName = prop.getProperty("qName");
         MQQueueManager qMgr = null;
 
-        String fileRoute = "C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\";
-        String fileName = "TestFile.txt";
-        File file = new File(fileRoute + fileName); // 읽어올 파일 경로와 이름 설정
+        String fileRoute =  prop.getProperty("fileRoute");
+        String fileName =  prop.getProperty("putFileName");
+        File file = new File(fileRoute + fileName + ".txt"); // 읽어올 파일 경로와 이름 설정
 
         // 시스템 문자 인코딩
         // IO Exception Occurred: Input length = 1 에러를 해결하기 위함 (현재는 지워도 에러가 나지 않는다)
@@ -107,6 +107,10 @@ public class MQput {
             List<String> list = readPerLine(file);
             String str = list.toString();
             System.out.println("str = " + str);
+            // 읽어온 메세지 형식 변환
+            int length = str.length();
+            str = str.substring(1, length - 1);
+
 
             // 메세지 입력
             message.writeString(str);
