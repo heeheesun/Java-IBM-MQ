@@ -6,7 +6,7 @@ public class Main
     {
         MQput.putMQmessage();
         System.out.println("=================================================");
-//        MQget.getMQmessage();
+        MQget.getMQmessage();
         System.out.println("=================================================");
     }
 }
