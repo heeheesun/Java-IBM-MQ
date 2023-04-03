@@ -19,8 +19,8 @@ public class MQget
     }
     public static void getMQmessage() throws IOException
     {
-        String propFileRoute = "C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\test.properties";
-        Properties prop = readProperties.readProp(propFileRoute);
+
+        Properties prop = readProperties.readProp();
         String qManager = prop.getProperty("qManager");
         String queueName = prop.getProperty("qName");
         MQQueueManager qMgr = null;

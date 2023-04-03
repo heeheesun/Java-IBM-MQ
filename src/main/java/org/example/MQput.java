@@ -81,8 +81,8 @@ public class MQput {
 //        props.put(MQConstants.PORT_PROPERTY, 1414);
 //        props.put(MQConstants.HOST_NAME_PROPERTY, "localhost");
 
-        String propFileRoute = "C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\test.properties";
-        Properties prop = readProperties.readProp(propFileRoute);
+
+        Properties prop = readProperties.readProp();
         String qManager = prop.getProperty("qManager");
         String queueName = prop.getProperty("qName");
         MQQueueManager qMgr = null;
