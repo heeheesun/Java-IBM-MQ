@@ -7,6 +7,16 @@ import com.ibm.mq.*; //import classes for MQSeries
 
 public class MQget
 {
+
+    public static void messagePreview(String msg_str) {
+        // file에 들어갈 내용 미리보기
+        System.out.println("msg_str = " + msg_str);
+
+        String[] change_msg_str = msg_str.split(", ");
+        System.out.println("<change_msg_str>");
+        for(int j=0; j<change_msg_str.length; j++)
+            System.out.println(change_msg_str[j]);
+    }
     public static void getMQmessage() throws IOException
     {
         String propFileRoute = "C:\\Users\\heehe\\OneDrive\\바탕 화면\\test\\test.properties";
@@ -22,14 +32,14 @@ public class MQget
 //            MQEnvironment.hostname = "";
 //            MQEnvironment.channel = "";
 //            MQEnvironment.port = Integer.parseInt("");
-            MQQueueManager qmgr = new MQQueueManager(qManager); // 이름 지정된 큐 관리자에 대한 연결을 작성
+            qMgr = new MQQueueManager(qManager); // 이름 지정된 큐 관리자에 대한 연결을 작성
 
             // Queue open option
             // MQC.MQOO_INPUT_AS_Q_DEF: 대기열 정의 기본값을 사용하여 메시지를 가져오려면 엽니다.
             // MQC.MQOO_INQUIRE: 조회를 위해 열기 - 특성을 조회하려는 경우에 필요합니다.
             int openOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_INQUIRE;
             // 이 큐 관리자에서 MQ 큐에 대한 액세스를 설정하여 메시지를 가져오거나 찾아보고, 메시지를 넣고, 큐의 속성에 대해 조회하거나 큐의 속성을 설정
-            MQQueue que = qmgr.accessQueue(queueName,openOptions,null,null,null);
+            MQQueue que = qMgr.accessQueue(queueName,openOptions,null,null,null);
             int depth = que.getCurrentDepth(); // 큐에 들어간 메세지의 갯수
             int t_dep = depth;
             System.out.println("depth = " + depth);
@@ -46,16 +56,11 @@ public class MQget
                 System.out.println("in while t_dep = " + t_dep);
                 que.get(msg,gmo);
                 String msg_str = msg.readLine();
-                System.out.println("msg_str = " + msg_str);
 
                 // readPerLine로 읽어와서 나뉘어진 줄 바꿈을 다시 변환
                 String enter_msg_str = msg_str.replaceAll(", ", System.getProperty("line.separator"));
 
-                // file에 들어갈 내용
-                String[] change_msg_str = msg_str.split(", ");
-                System.out.println("<change_msg_str>");
-                for(int j=0; j<change_msg_str.length; j++)
-                    System.out.println(change_msg_str[j]);
+                messagePreview(msg_str);
 
                 // 생성 파일 경로와 이름, 확장자 지정
                 File file = new File(fileRoute + fileName + filenum +".txt");
@@ -86,7 +91,7 @@ public class MQget
                 t_dep=t_dep-1;
             }
 
-            qmgr.commit(); // 애플리케이션이 동기점에 도달했음을 큐 관리자에게 표시
+            qMgr.commit(); // 애플리케이션이 동기점에 도달했음을 큐 관리자에게 표시
         }catch(MQException mq){
             System.out.println(mq.getMessage());
         }

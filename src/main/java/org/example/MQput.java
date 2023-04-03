@@ -21,11 +21,12 @@ import com.ibm.mq.constants.MQConstants;
 
 public class MQput {
 
-    // 파일을 줄별로 읽어오는 함수
-    // BufferedReader : 버퍼를 이용해서 읽음(입력) 엔터만 경계로 인식, 받은 데이터가 String으로 고정
-    // BufferedWriter : 버퍼를 이용해서 씀(출력)
-    // readLine : 데이터를 한 줄 씩 읽어옴
+
     public static List<String> readPerLine(File file) {
+        // 파일을 줄별로 읽어오는 함수
+        // BufferedReader : 버퍼를 이용해서 읽음(입력) 엔터만 경계로 인식, 받은 데이터가 String으로 고정
+        // BufferedWriter : 버퍼를 이용해서 씀(출력)
+        // readLine : 데이터를 한 줄 씩 읽어옴
         List<String> list = new ArrayList<String>();
         BufferedReader reader = null;
         String line = "";
@@ -57,6 +58,19 @@ public class MQput {
         // com.ibm.mq.cfg.jmqi.UnmappableCharacterReplacement: 인코딩 작업에서 문자를 매핑할 수 없을 때 적용할 대체 바이트를 설정하거나 가져옴
         System.setProperty("com.ibm.mq.cfg.jmqi.UnmappableCharacterAction", "REPLACE");
         System.setProperty("com.ibm.mq.cfg.jmqi.UnmappableCharacterReplacement", "63");
+    }
+
+    public static MQMessage messageEncoding(MQMessage message) {
+        // 메세지 인코딩
+        // MQFMT_STRING: 애플리케이션 메시지 데이터는 SBCS 문자열(1바이트 문자 세트) 또는 DBCS 문자열(2바이트 문자 세트)일 수 있습니다.
+        //               MQGET 호출에 MQGMO_CONVERT 옵션이 지정된 경우 이 형식의 메시지를 변환할 수 있습니다.
+        message.format = MQConstants.MQFMT_STRING;
+//            message.encoding = 546; // window
+        // MQENC_NATIVE: 숫자 코드를 사용해서 시스템 인코딩
+        message.encoding = MQConstants.MQENC_NATIVE;
+        message.characterSet = 1208; // UTF-8
+
+        return message;
     }
 
     public static void putMQmessage() {
@@ -98,21 +112,13 @@ public class MQput {
 
             // 메세지 생성
             MQMessage message = new MQMessage();
-
-            // 메세지 인코딩
-            // MQFMT_STRING: 애플리케이션 메시지 데이터는 SBCS 문자열(1바이트 문자 세트) 또는 DBCS 문자열(2바이트 문자 세트)일 수 있습니다.
-            //               MQGET 호출에 MQGMO_CONVERT 옵션이 지정된 경우 이 형식의 메시지를 변환할 수 있습니다.
-            message.format = MQConstants.MQFMT_STRING;
-//            message.encoding = 546; // window
-            // MQENC_NATIVE: 숫자 코드를 사용해서 시스템 인코딩
-            message.encoding = MQConstants.MQENC_NATIVE;
-            message.characterSet = 1208; // UTF-8
+            messageEncoding(message);
 
             // 메세지 읽어오기
             List<String> list = readPerLine(file);
             String str = list.toString();
             System.out.println("str = " + str);
-            // readPerLine로 메세지를 읽어온 경우 일정 형식을 갖게 됨. 변환해준다.
+            // readPerLine(BufferReader-leadLine)으로 메세지를 읽어온 경우 일정 형식을 갖게 됨. 변환해준다.
             int length = str.length();
             str = str.substring(1, length - 1);
 
