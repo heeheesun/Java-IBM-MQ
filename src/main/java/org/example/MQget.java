@@ -21,25 +21,21 @@ public class MQget
     {
 
         Properties prop = readProperties.readProp();
-        String qManager = prop.getProperty("qManager");
-        String queueName = prop.getProperty("qName");
         MQQueueManager qMgr = null;
 
-        String fileRoute =  prop.getProperty("fileRoute");
-        String fileName =  prop.getProperty("getFileName");
         try{
             //로컬 큐에 접속할 때는 사용하지 않는 요소들
 //            MQEnvironment.hostname = "";
 //            MQEnvironment.channel = "";
 //            MQEnvironment.port = Integer.parseInt("");
-            qMgr = new MQQueueManager(qManager); // 이름 지정된 큐 관리자에 대한 연결을 작성
+            qMgr = new MQQueueManager(prop.getProperty("qManager")); // 이름 지정된 큐 관리자에 대한 연결을 작성
 
             // Queue open option
             // MQC.MQOO_INPUT_AS_Q_DEF: 대기열 정의 기본값을 사용하여 메시지를 가져오려면 엽니다.
             // MQC.MQOO_INQUIRE: 조회를 위해 열기 - 특성을 조회하려는 경우에 필요합니다.
             int openOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_INQUIRE;
             // 이 큐 관리자에서 MQ 큐에 대한 액세스를 설정하여 메시지를 가져오거나 찾아보고, 메시지를 넣고, 큐의 속성에 대해 조회하거나 큐의 속성을 설정
-            MQQueue que = qMgr.accessQueue(queueName,openOptions,null,null,null);
+            MQQueue que = qMgr.accessQueue(prop.getProperty("qName"),openOptions,null,null,null);
             int depth = que.getCurrentDepth(); // 큐에 들어간 메세지의 갯수
             int t_dep = depth;
             System.out.println("depth = " + depth);
@@ -63,7 +59,7 @@ public class MQget
                 messagePreview(msg_str);
 
                 // 생성 파일 경로와 이름, 확장자 지정
-                File file = new File(fileRoute + fileName + filenum +".txt");
+                File file = new File(prop.getProperty("fileRoute") + prop.getProperty("getFileName") + filenum +".txt");
                 FileOutputStream fos = null;
                 filenum++;
                 try {

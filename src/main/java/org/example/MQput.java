@@ -83,27 +83,22 @@ public class MQput {
 
 
         Properties prop = readProperties.readProp();
-        String qManager = prop.getProperty("qManager");
-        String queueName = prop.getProperty("qName");
         MQQueueManager qMgr = null;
 
-        String fileRoute =  prop.getProperty("fileRoute");
-        String fileName =  prop.getProperty("putFileName");
-        File file = new File(fileRoute + fileName + ".txt"); // 읽어올 파일 경로와 이름 설정
+        File file = new File(prop.getProperty("fileRoute") + prop.getProperty("putFileName") + ".txt"); // 읽어올 파일 경로와 이름 설정
 
         systemEncoding();
 
-
         try {
             // 해시 테이블을 사용하여 이름 지정된 큐 관리자에 대한 연결을 작성
-            qMgr = new MQQueueManager(qManager, props);
+            qMgr = new MQQueueManager(prop.getProperty("qManager"), props);
             // Queue open options
             // MQOO_OUTPUT: 메세지를 put 하기 위해 큐를 연다
             // MQOO_INPUT_AS_Q_DEF: 대기열 정의 기본값을 사용하여 메시지를 가져오려면 대기열을 연다
             int openOptions = MQConstants.MQOO_OUTPUT | MQConstants.MQOO_INPUT_AS_Q_DEF;
 
             // 기본 큐 관리자 이름 및 대체 사용자 ID 값을 사용하여 이 큐 관리자에서 WebSphere MQ 큐에 대한 액세스를 설정
-            MQQueue queue = qMgr.accessQueue(queueName, openOptions);
+            MQQueue queue = qMgr.accessQueue(prop.getProperty("qName"), openOptions);
 
             // 옵션이 설정되지 않은 상태로 객체를 구성하고 공백 resolveQueueName 및 resolveQueueManagerName을 생성
             MQPutMessageOptions pmo = new MQPutMessageOptions();
